@@ -8,6 +8,7 @@ from secrets import *
 from flask import session
 import time    
 import datetime
+import warnings
 
 
 def get_devices():
@@ -34,7 +35,7 @@ def get_devices():
         if device.get('is_active') is True:
             playing_device_id = device.get('id')
     if playing_device_id == "":
-        playing_device_id = "819927e08f7b4e23681a8c4614b91d89d9111e35" # defaults to mac mini if not running
+        playing_device_id = default_device # defaults to mac mini if not running
    
     return playing_device_id
 
@@ -96,6 +97,7 @@ def add_to_daily_queue(device, uris):
     # sp_queue.add_to_queue(uri = daily_uri, device_id = playing_device_id)
 
 if __name__ == "__main__":
+    warnings.filterwarnings("ignore", category=DeprecationWarning) 
     device = get_devices()
     print("Got device", device)
     uris = get_uris()
