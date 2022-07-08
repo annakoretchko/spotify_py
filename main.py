@@ -28,6 +28,8 @@ def get_devices():
     r = requests.get(url_devices, headers=headers)
     d = r.json()
 
+    with open('devices.json') as json_file:
+        data = json.load(json_file)
     # gets the playing device ID for that moment / morning 
     devices = d['devices']
     playing_device_id = ""
@@ -35,9 +37,11 @@ def get_devices():
         if device.get('is_active') is True:
             playing_device_id = device.get('id')
     if playing_device_id == "":
-        playing_device_id = default_device # defaults to mac mini if not running
-   
-    return playing_device_id
+        playing_device_id = data.get(default_device) # defaults to mac mini if not running
+
+    playing_device_name = data.get(playing_device_id)
+ 
+    return playing_device_id, playing_device_name
 
 
 def get_uris():
@@ -98,9 +102,9 @@ def add_to_daily_queue(device, uris):
 
 if __name__ == "__main__":
     warnings.filterwarnings("ignore", category=DeprecationWarning) 
-    device = get_devices()
-    print("Got device", device)
+    device_id , device_name = get_devices()
+    print("Got device:", device_name)
     uris = get_uris()
     print("Got uris", uris)
-    add_to_daily_queue(device, uris)
-    print("Sucessfully added to queue")
+    add_to_daily_queue(device_id, uris)
+    print("Sucessfully added to queue on", device_name)
