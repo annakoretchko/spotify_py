@@ -37,10 +37,10 @@ def get_devices():
         if device.get('is_active') is True:
             playing_device_id = device.get('id')
     if playing_device_id == "":
-        playing_device_id = data.get(default_device) # defaults to mac mini if not running
+        playing_device_id = default_device # defaults to mac mini if not running
 
     playing_device_name = data.get(playing_device_id)
- 
+
     return playing_device_id, playing_device_name
 
 
