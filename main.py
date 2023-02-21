@@ -64,6 +64,7 @@ def get_uris():
     today = datetime.date.today()
     today = (today.strftime("%Y-%m-%d"))
     daily_uri_list = []
+    names = []
     for key, value in data.items():
         # response = json.dumps(sp_reg.show_episodes(value['uri'], limit = 1), indent =2)
         id = str(value['other'])
@@ -71,11 +72,15 @@ def get_uris():
         r = requests.get(url_shows, headers=headers)
         d = r.json()
         res = json.loads(json.dumps(d))
-        release_date = ((res['items'][0])['release_date'])
+        items = res.get("items", None)
+        if items is None:
+            continue
+        release_date = ((items[0])['release_date'])
         if release_date == today:
             daily_uri_list.append((res['items'][0])['uri'])
+            names.append((res['items'][0])['name'])
 
-    return daily_uri_list
+    return daily_uri_list, names
 
 
 
@@ -104,7 +109,8 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore", category=DeprecationWarning) 
     device_id , device_name = get_devices()
     print("Got device:", device_name)
-    uris = get_uris()
+    uris, names = get_uris()
     print("Got uris", uris)
+    print("Got the following", names)
     add_to_daily_queue(device_id, uris)
     print("Sucessfully added to queue on", device_name)
