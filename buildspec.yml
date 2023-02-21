@@ -15,10 +15,6 @@ phases:
   build:
     on-failure: ABORT
     commands:
-      - make codebuild-push-to-ecr
-      - make codebuild-delete-untagged-images
   post_build:
     commands:
-      - for d in elastic-etl-v3; do (cd "$d" && sam deploy --s3-bucket cloud9-697856758640-sam-deployments-us-west-2 --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND --stack-name `cat .application.json | python3 -c "import sys, json; print(json.load(sys.stdin)['StackName'])"`); done
-      - make codebuild-install
-      #- for din elastic-etl-v1/common elastic-etl-v2/common ; do if [ -e $d/"stepFunctionDefinitions/sfnDeploy.py" ]; then (cd $d"/stepFunctionDefinitions" && python3 sfnDeploy.py); fi; done
+      - python3 test.py
