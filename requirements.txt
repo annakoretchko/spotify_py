@@ -1,30 +1,30 @@
-certifi==2021.10.8
-charset-normalizer==2.0.12
-cheroot==8.6.0
-CherryPy==18.6.1
-click==8.1.2
-feedparser==6.0.10
-Flask==2.1.1
-idna==3.3
-importlib-metadata==4.11.3
-importlib-resources==5.7.0
-itsdangerous==2.1.2
-jaraco.classes==3.2.1
-jaraco.collections==3.5.1
-jaraco.context==4.1.1
-jaraco.functools==3.5.0
-jaraco.text==3.7.0
-Jinja2==3.1.1
-MarkupSafe==2.1.1
-more-itertools==8.12.0
-portend==3.1.0
-pytz==2022.1
-requests==2.27.1
-sgmllib3k==1.0.0
-six==1.16.0
-spotipy==2.19.0
-tempora==5.0.1
-urllib3==1.26.9
-Werkzeug==2.1.1
-zc.lockfile==2.0
-zipp==3.8.0
+# certifi==2021.10.8
+# charset-normalizer==2.0.12
+# cheroot==8.6.0
+# CherryPy==18.6.1
+# click==8.1.2
+# feedparser==6.0.10
+# Flask==2.1.1
+# idna==3.3
+# importlib-metadata==4.11.3
+# importlib-resources==5.7.0
+# itsdangerous==2.1.2
+# jaraco.classes==3.2.1
+# jaraco.collections==3.5.1
+# jaraco.context==4.1.1
+# jaraco.functools==3.5.0
+# jaraco.text==3.7.0
+# Jinja2==3.1.1
+# MarkupSafe==2.1.1
+# more-itertools==8.12.0
+# portend==3.1.0
+# pytz==2022.1
+# requests==2.27.1
+# sgmllib3k==1.0.0
+# six==1.16.0
+# spotipy==2.19.0
+# tempora==5.0.1
+# urllib3==1.26.9
+# Werkzeug==2.1.1
+# zc.lockfile==2.0
+# zipp==3.8.0
