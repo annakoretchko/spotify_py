@@ -17,9 +17,6 @@ def get_devices():
                         cache_path = cache_path_device,
                         scope=scope_devices)
     access_token = (auth_manager.get_access_token()['access_token'])
-    # with open(cp1) as temp_tokens:
-    #     data = json.load(temp_tokens)
-    #     access_token = data['access_token']
     headers = {
         'Authorization': 'Bearer {token}'.format(token=access_token)
     }

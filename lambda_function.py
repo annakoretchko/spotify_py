@@ -1,8 +1,24 @@
+
+import json
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
+import requests
+import time    
+import datetime
+import warnings
+from __future__ import print_function
+import json
+import boto3
+
+ssm = boto3.client('ssm', 'us-east-2')
+def get_parameters():
+    response = ssm.get_parameters(
+        Names=['client_id_anna'],WithDecryption=True
+    )
+    for parameter in response['Parameters']:
+        return parameter['Value']
+        
 def lambda_handler(event, context):
-    d = {
-        "Anna": 5,
-        "Vanna": 6
-    }
-    print("WHAT THE")
-    print(d)
-    print("hey")
+    value = get_parameters()
+    print("value1 = " + value)
+    return value  # Echo back the first key value
