@@ -1,21 +1,20 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
       python: 3.9
     commands:
-      - pip install --user aws-sam-cli
-      - USER_BASE_PATH=$(python -m site --user-base)
-      - export PATH=$PATH:$USER_BASE_PATH/bin
-  pre_build:
-    on-failure: ABORT
-    commands:
-      - python3 test.py
+      - echo "Installing dependencies..."
+      - pip install -r requirements.txt -t lib
   build:
-    on-failure: ABORT
     commands:
+      - echo "Zipping deployment package..."
+      - cd lib
+      - zip -r9 ../deployment_package.zip .
+      - cd ..
+      - zip -g deployment_package.zip lambda_function.py
   post_build:
     commands:
-      - aws lambda update-function-code --function-name spotify_run
-      - python3 test.py
+      - echo "Updating lambda Function..."
+      - aws lambda update-function-code --function-name github-to-lambda-demo --zip-file fileb://deployment_package.zip
+      - echo "DONE!!"
