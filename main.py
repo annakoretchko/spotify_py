@@ -5,7 +5,6 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import requests
 from secrets import *
-from flask import session
 import time    
 import datetime
 import warnings
