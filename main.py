@@ -49,7 +49,7 @@ def get_uris(auth_manager):
     # gets uri for pods to queue up 
     daily_pods_dict = ssm_client.read_dict_secret("daily_pods_anna")
 
-    today = datetime.date.today()
+    today = datetime.date.today() - datetime.timedelta(days=1)
     today = (today.strftime("%Y-%m-%d"))
     daily_uri_list = []
     names = []
@@ -98,7 +98,7 @@ if __name__ == "__main__":
         client_id=ssm_client.read_str_secret("client_id_anna"),
         client_secret=ssm_client.read_str_secret("client_secret_anna"),
         redirect_uri=ssm_client.read_str_secret("SPOTIPY_REDIRECT_URI"),
-        cache_path=ssm_client.read_str_secret("cache_device_anna"),
+        # cache_path=ssm_client.read_str_secret("cache_device_anna"),
         scope=[
             ssm_client.read_str_secret("scope_devices_anna"),
             ssm_client.read_str_secret("scope_add_to_queue_anna"),
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     )
     device_id , device_name = get_devices(auth_manager)
     print("Got device:", device_name)
-    uris, names = get_uris(auth_manager)
+    uris, names = get_uris(auth_manager2)
     print("Got uris", uris)
     print("Got the following", names)
     add_to_daily_queue(device_id, uris, auth_manager)
