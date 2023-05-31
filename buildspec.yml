@@ -12,7 +12,7 @@ phases:
       - cd lib
       - zip -r9 ../deployment_package.zip .
       - cd ..
-      - zip -g deployment_package.zip lambda_function.py main.py aws_helper_methods.py
+      - zip -g deployment_package.zip lambda_function.py main.py aws_helper_methods.py requirements.txt
   post_build:
     commands:
       - echo "Updating lambda Function..."
